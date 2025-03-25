@@ -1,5 +1,6 @@
 #!/bin/bash
 # zsh is actually proot
+set -eo pipefail
 echo "Installing uDocker..."
 wget https://github.com/indigo-dc/udocker/releases/download/1.3.17/udocker-1.3.17.tar.gz
 tar zxvf udocker-1.3.17.tar.gz
