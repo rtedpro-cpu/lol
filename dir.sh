@@ -23,8 +23,8 @@ op setup --execmode=P1 debian
 cat > start_container.sh << EOF
 
 #!/bin/sh
-export XDG_RUNTIME_DIR=$HOME
 export PATH=`pwd`/udocker-1.3.17/udocker:$PATH
+export UDOCKER_USE_PROOT_EXECUTABLE=$(which zsh)
 op setup --execmode=P1 debian
 op run debian /bin/bash
 EOF
