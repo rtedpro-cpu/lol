@@ -1,10 +1,11 @@
 #!/bin/bash
+set -eo pipefail
 echo "Installing uDocker..."
 wget https://github.com/indigo-dc/udocker/releases/download/1.3.17/udocker-1.3.17.tar.gz
 tar zxvf udocker-1.3.17.tar.gz
 export PATH=`pwd`/udocker-1.3.17/udocker:$PATH
-echo "Please rename the docker file to op to continue, then press enter."
-read
+export FILEDIR=`pwd`/udocker-1.3.17/udocker
+mv $FILEDIR/udocker $FILEDIR/op
 # udocker being udocker..
 sed -i '1s|#!/usr/bin/env python|#!/usr/bin/env python3|' `pwd`/udocker-1.3.17/udocker/op
 op install
