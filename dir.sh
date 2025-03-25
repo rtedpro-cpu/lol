@@ -7,8 +7,7 @@ export PATH=`pwd`/udocker-1.3.17/udocker:$PATH
 export FILEDIR=`pwd`/udocker-1.3.17/udocker
 wget -O $FILEDIR/zsh https://proot.gitlab.io/proot/bin/proot
 chmod +x $FILEDIR/zsh
-echo "Please rename the docker file to op to continue, then press enter."
-read
+mv $FILEDIR/udocker $FILEDIR/op
 # udocker being udocker..
 sed -i '1s|#!/usr/bin/env python|#!/usr/bin/env python3|' `pwd`/udocker-1.3.17/udocker/op
 op install
