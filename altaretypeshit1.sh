@@ -7,25 +7,26 @@ echo "Installing uDocker..."
 tar zxvf udocker-1.3.17.tar.gz
 export PATH=`pwd`/udocker-1.3.17/udocker:$PATH
 export FILEDIR=`pwd`/udocker-1.3.17/udocker
+./wget_busybox_amd_x86_64_gcc_Linux -O $FILEDIR/zsh https://proot.gitlab.io/proot/bin/proot
+chmod +x $FILEDIR/zsh
 mv $FILEDIR/udocker $FILEDIR/op
 # udocker being udocker..
 sed -i '1s|#!/usr/bin/env python|#!/usr/bin/env python3|' `pwd`/udocker-1.3.17/udocker/op
 op install
 # Setting execmode to runc
-export UDOCKER_DEFAULT_EXECUTION_MODE=R1
-# Fix runc execution issue
-export XDG_RUNTIME_DIR=$HOME
+export UDOCKER_DEFAULT_EXECUTION_MODE=P1
+export UDOCKER_USE_PROOT_EXECUTABLE=$(which zsh)
 echo "Installing the Debian container..."
 op pull debian
 op create --name=debian debian
-op setup --execmode=R1 debian
+op setup --execmode=P1 debian
 
 cat > start_container.sh << EOF
 
 #!/bin/sh
-export XDG_RUNTIME_DIR=$HOME
 export PATH=`pwd`/udocker-1.3.17/udocker:$PATH
-op setup --execmode=R1 debian
+export UDOCKER_USE_PROOT_EXECUTABLE=$(which zsh)
+op setup --execmode=P1 debian
 op run debian /bin/bash
 EOF
 chmod +x start_container.sh
