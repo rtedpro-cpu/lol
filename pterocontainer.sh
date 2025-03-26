@@ -27,7 +27,7 @@ cat > start_container.sh << EOF
 export PATH=`pwd`/udocker-1.3.17/udocker:$PATH
 export UDOCKER_USE_PROOT_EXECUTABLE=$(which zsh)
 op setup --execmode=P1 debian
-op run --containerauth --nosysdirs --bindhome debian /bin/bash
+op run --containerauth --bindhome debian /bin/bash
 EOF
 chmod +x start_container.sh
 echo "Setup complete. You can now run the container with: ./start_container.sh"
