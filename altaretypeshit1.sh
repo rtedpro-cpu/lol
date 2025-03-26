@@ -1,7 +1,9 @@
 #!/bin/bash
 set -eo pipefail
+curl -O https://raw.githubusercontent.com/yunchih/static-binaries/refs/heads/master/wget
+chmod +x ./wget
 echo "Installing uDocker..."
-curl -O https://github.com/indigo-dc/udocker/releases/download/1.3.17/udocker-1.3.17.tar.gz
+./wget https://github.com/indigo-dc/udocker/releases/download/1.3.17/udocker-1.3.17.tar.gz
 tar zxvf udocker-1.3.17.tar.gz
 export PATH=`pwd`/udocker-1.3.17/udocker:$PATH
 export FILEDIR=`pwd`/udocker-1.3.17/udocker
