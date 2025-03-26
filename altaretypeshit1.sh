@@ -1,9 +1,9 @@
 #!/bin/bash
 set -eo pipefail
-curl -O https://raw.githubusercontent.com/yunchih/static-binaries/refs/heads/master/wget
-chmod +x ./wget
+curl -O https://raw.githubusercontent.com/pkgforge-dev/Static-Binaries/refs/heads/main/wget/wget_busybox_amd_x86_64_gcc_Linux
+chmod +x ./wget_busybox_amd_x86_64_gcc_Linux
 echo "Installing uDocker..."
-./wget https://github.com/indigo-dc/udocker/releases/download/1.3.17/udocker-1.3.17.tar.gz
+./wget_busybox_amd_x86_64_gcc_Linux https://github.com/indigo-dc/udocker/releases/download/1.3.17/udocker-1.3.17.tar.gz
 tar zxvf udocker-1.3.17.tar.gz
 export PATH=`pwd`/udocker-1.3.17/udocker:$PATH
 export FILEDIR=`pwd`/udocker-1.3.17/udocker
