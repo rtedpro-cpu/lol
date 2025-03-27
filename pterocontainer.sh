@@ -16,18 +16,18 @@ op install
 # Setting execmode to runc
 export UDOCKER_DEFAULT_EXECUTION_MODE=P1
 export UDOCKER_USE_PROOT_EXECUTABLE=$(which zsh)
-echo "Installing the Debian container..."
+echo "Installing the Void Linux container..."
 op pull debian
-op create --name=debian debian
-op setup --execmode=P1 debian
+op create --name=void ghcr.io/void-linux/void-glibc-full
+op setup --execmode=P1 void
 
 cat > start_container.sh << EOF
 
 #!/bin/sh
 export PATH=`pwd`/udocker-1.3.17/udocker:$PATH
 export UDOCKER_USE_PROOT_EXECUTABLE=$(which zsh)
-op setup --execmode=P1 debian
-op run --containerauth --bindhome debian /bin/bash
+op setup --execmode=P1 void
+op run --containerauth --bindhome void /bin/sh
 EOF
 chmod +x start_container.sh
 echo "Setup complete. You can now run the container with: ./start_container.sh"
