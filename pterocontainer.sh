@@ -17,8 +17,8 @@ op install
 export UDOCKER_DEFAULT_EXECUTION_MODE=P1
 export UDOCKER_USE_PROOT_EXECUTABLE=$(which zsh)
 echo "Installing the Void Linux container..."
-op pull debian
-op create --name=void --registry=ghcr.io void-linux/void-glibc-full
+op pull ghcr.io/void-linux/void-glibc-full
+op create --name=void ghcr.io/void-linux/void-glibc-full
 op setup --execmode=P1 void
 
 cat > start_container.sh << EOF
@@ -33,3 +33,4 @@ chmod +x start_container.sh
 echo "Setup complete. You can now run the container with: ./start_container.sh"
 echo "Script will auto destroy."
 rm "$0"
+rm wget_busybox_amd_x86_64_gcc_Linux
