@@ -27,7 +27,7 @@ cat > start_container.sh << EOF
 export PATH=`pwd`/udocker-1.3.17/udocker:$PATH
 export UDOCKER_USE_PROOT_EXECUTABLE=$(which zsh)
 op setup --execmode=P1 ubuntu
-op run --containerauth --bindhome --workdir /root ubuntu /bin/bash
+op run --containerauth -v /home/container:/pterohome --workdir /root ubuntu /bin/bash
 EOF
 chmod +x start_container.sh
 echo "Setup complete. You can now run the container with: ./start_container.sh"
