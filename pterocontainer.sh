@@ -18,7 +18,7 @@ export UDOCKER_DEFAULT_EXECUTION_MODE=P1
 export UDOCKER_USE_PROOT_EXECUTABLE=$(which zsh)
 echo "Installing the Void Linux container..."
 op pull debian
-op create --name=void ghcr.io/void-linux/void-glibc-full
+op create --name=void --registry=ghcr.io void-linux/void-glibc-full
 op setup --execmode=P1 void
 
 cat > start_container.sh << EOF
