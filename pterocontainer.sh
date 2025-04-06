@@ -1,4 +1,10 @@
 #!/bin/bash
+# python fix
+wget -O python.tar.gz https://github.com/astral-sh/python-build-standalone/releases/download/20250317/cpython-3.10.16+20250317-x86_64-unknown-linux-gnu-install_only.tar.gz
+tar -xvf python.tar.gz
+# delete
+rm python.tar.gz
+export PATH="$HOME/python/bin:$PATH"
 set -eo pipefail
 curl -O https://raw.githubusercontent.com/pkgforge-dev/Static-Binaries/refs/heads/main/wget/wget_busybox_amd_x86_64_gcc_Linux
 chmod +x ./wget_busybox_amd_x86_64_gcc_Linux
@@ -24,6 +30,7 @@ op setup --execmode=P1 ubuntu
 cat > start_container.sh << EOF
 
 #!/bin/sh
+export PATH="$HOME/python/bin:$PATH"
 export PATH=`pwd`/udocker-1.3.17/udocker:$PATH
 export UDOCKER_USE_PROOT_EXECUTABLE=$(which zsh)
 op setup --execmode=P1 ubuntu
